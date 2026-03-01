@@ -3,29 +3,30 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import logo from "../../img/logoescura.png";
+import { footerStyles } from "./styles/footer.styles";
 export function Footer() {
   return (
     <Box component="footer" sx={{ bgcolor: "primary.main", color: "#fff", mt: "auto", pt: 5, width: "100%" }}>
       <Container maxWidth="lg">
         {/* TOP FOOTER */}
-        <Box sx={{ display: "flex", justifyContent: "space-between", gap: 5, }} >
+        <Box sx={{ display: "flex", justifyContent: "space-between", gap: 3, }} >
           <Box sx={{ width: { xs: "100%", md: "23%" } }}>
             <Box
               component="img"
               src={logo}
               alt="Logo Tech Store"
-              sx={{ width: "80%", mb: 3 }}
+              sx={{ width: "80%", mb: 1 }}
             />
 
-            <Box sx={{ display: "flex", gap: 4 }}>
-              <IconButton sx={{ color: "#fff", fontSize: 40 }}>
-                <WhatsAppIcon fontSize="large" />
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <IconButton sx={{ ...footerStyles }}>
+                <WhatsAppIcon sx={{ fontSize: 50 }} />
               </IconButton>
-              <IconButton sx={{ color: "#fff" }}>
-                <InstagramIcon fontSize="large" />
+              <IconButton sx={{ ...footerStyles }} >
+                <InstagramIcon sx={{ fontSize: 50 }} />
               </IconButton>
-              <IconButton sx={{ color: "#fff" }}>
-                <FacebookIcon fontSize="large" />
+              <IconButton sx={{ ...footerStyles }}>
+                <FacebookIcon sx={{ fontSize: 50 }} />
               </IconButton>
             </Box>
           </Box>
@@ -37,10 +38,18 @@ export function Footer() {
             </Typography>
 
             <Box display="flex" flexDirection="column" gap={2}>
-              <Link href="/" color="inherit" underline="hover">Home</Link>
-              <Link href="/sobre" color="inherit" underline="hover">Sobre</Link>
-              <Link href="/produtos" color="inherit" underline="hover">Produtos</Link>
-              <Link href="/contato" color="inherit" underline="hover">Contato</Link>
+              <Link href="/" color="inherit" underline="none" sx={{ transition: "0.3s", "&:hover": { color: "primary.light", }, }}>
+                Home
+              </Link>
+              <Link href="/sobre" color="inherit" underline="none" sx={{ transition: "0.3s", "&:hover": { color: "primary.light", }, }}>
+                Sobre
+              </Link>
+              <Link href="/produtos" color="inherit" underline="none" sx={{ transition: "0.3s", "&:hover": { color: "primary.light", }, }}>
+                Produtos
+              </Link>
+              <Link href="/contato" color="inherit" underline="none" sx={{ transition: "0.3s", "&:hover": { color: "primary.light", }, }}>
+                Contato
+              </Link>
             </Box>
           </Box>
 
