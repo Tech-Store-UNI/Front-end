@@ -1,17 +1,30 @@
+import React from 'react';
 import { Box, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+
+// Estilos Swiper
 import "swiper/css";
 import "swiper/css/pagination";
+
+// Seus componentes e dados
 import { bannerData, benefitsData, fotosDepartamento } from "./util/util";
+import { productsData } from "../../components/Cards-Produtos/util/util.produtos";
 import { GradientButton } from "../../components/GradientButton/GradientButton";
+import { CarouselSection } from '../../components/Cards-Produtos/CarouselSection';
 
+export const Home: React.FC = () => {
+    
+    const sections = [
+        { id: 'Fones de Ouvido', title: 'Fones de Ouvido' },
+        { id: 'computers', title: 'Computadores' },
+        { id: 'accessories', title: 'Acessórios' }
+    ] as const;
 
-export const Home = () => {
     return (
         <Box sx={{ bgcolor: "primary.contrastText" }}>
 
-            {/* ================= CAROUSEL ================= */}
+            {/* ================= BANNER PRINCIPAL ================= */}
             <Box sx={{ width: "100%" }}>
                 <Swiper
                     slidesPerView={1}
@@ -25,27 +38,18 @@ export const Home = () => {
                                 component="img"
                                 src={item.image}
                                 alt={item.alt}
-                                sx={{
-                                    width: "100%",
-                                    display: "block"
-                                }}
+                                sx={{ width: "100%", display: "block" }}
                             />
                         </SwiperSlide>
                     ))}
                 </Swiper>
             </Box>
 
-            {/* ================= BENEFITS ================= */}
+            {/* ================= BENEFÍCIOS ================= */}
             <Box sx={{ display: "flex", justifyContent: "center", width: "100%", gap: "25px", py: "25px" }} >
                 {benefitsData.map((item) => (
-                    <Box key={item.id} sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "15px", color: "primary.main" }}>
-                        <Box
-                            component="img"
-                            src={item.icon}
-                            alt={item.text}
-                            sx={{ width: "15%" }}
-                        />
-
+                    <Box key={item.id} sx={{ display: "flex", alignItems: "center", gap: "15px", color: "primary.main" }}>
+                        <Box component="img" src={item.icon} alt={item.text} sx={{ width: "15%" }} />
                         <Typography sx={{ width: "50%", fontSize: "1em" }}>
                             {item.text}
                         </Typography>
@@ -54,24 +58,18 @@ export const Home = () => {
             </Box>
 
             {/* ================= DEPARTAMENTOS ================= */}
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", margin: "60px 0 100px" }} >
-                <Typography sx={{ fontSize: "3.5em", color: "secondary.main" }}>
+            <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", margin: "60px 0 100px" }} >
+                <Typography sx={{ fontSize: { xs: "2rem", md: "3.5em" }, color: "secondary.main" }}>
                     Confira nossos departamentos
                 </Typography>
 
-                {/* Imagens */}
                 <Box sx={{ width: "90%", gap: "60px", display: "flex", justifyContent: "center", mt: "70px", mb: "50px" }} >
                     {fotosDepartamento.map((item) => (
                         <Box
                             key={item.id}
                             component="a"
                             href="#"
-                            sx={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "center",
-                                textDecoration: "none"
-                            }}
+                            sx={{ width: "100%", display: "flex", justifyContent: "center", textDecoration: "none" }}
                         >
                             <Box
                                 component="img"
@@ -90,10 +88,17 @@ export const Home = () => {
                         </Box>
                     ))}
                 </Box>
-                <GradientButton>
-                    Ver mais
-                </GradientButton>
+                <GradientButton>Ver mais</GradientButton>
             </Box>
+
+            {/* ================= SEÇÕES DE PRODUTOS (CARROSSEL) ================= */}
+            {sections.map((section) => (
+                <CarouselSection
+                    key={section.id}
+                    title={section.title}
+                    products={productsData.filter(p => p.category === section.id)}
+                />
+            ))}
         </Box>
     );
 };

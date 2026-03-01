@@ -21,7 +21,7 @@ export const NavBar = () => {
             <Toolbar sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
                 {/* LOGO */}
                 <Box sx={{ width: "20%", pl: 2 }}>
-                    <Box component={RouterLink} to="/home" sx={{ display: "inline-block" }}>
+                    <Box component={RouterLink} to="/" sx={{ display: "inline-block" }}>
                         <Box
                             component="img"
                             src={logo}
