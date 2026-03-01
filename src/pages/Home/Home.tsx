@@ -2,12 +2,8 @@ import React from 'react';
 import { Box, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-
-// Estilos Swiper
 import "swiper/css";
 import "swiper/css/pagination";
-
-// Seus componentes e dados
 import { bannerData, benefitsData, fotosDepartamento } from "./util/util";
 import { productsData } from "../../components/Cards-Produtos/util/util.produtos";
 import { GradientButton } from "../../components/GradientButton/GradientButton";

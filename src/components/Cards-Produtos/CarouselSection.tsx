@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperClass } from "swiper/types";
+import type { Swiper as SwiperClass } from "swiper";
 import ProductCard from "./ProductCard";
 import type { Product } from "./types/produtos";
 
@@ -13,7 +13,7 @@ interface CarouselSectionProps {
 }
 
 export const CarouselSection: React.FC<CarouselSectionProps> = ({ products, title }) => {
-    // Tipando o useRef com a classe do Swiper
+
     const swiperRef = useRef<SwiperClass | null>(null);
 
     return (
