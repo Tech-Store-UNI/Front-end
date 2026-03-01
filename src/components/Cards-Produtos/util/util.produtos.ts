@@ -1,5 +1,5 @@
 import AirPods4 from "../../../img/produtos/airpods-4.png";
-import AirPods2 from "../../../img/produtos/airpods-4.png";
+import AirPodsPro from "../../../img/produtos/airpods-pro.png";
 import Beats from "../../../img/produtos/Beats-Solo.png";
 import airpodsmax from "../../../img/produtos/airpods-max.png";
 import note1 from "../../../img/produtos/note1.png";
@@ -30,7 +30,7 @@ export const productsData: Product[] = [
     title: "AirPods Max – Meia-noite",
     oldPrice: "R$ 1.999,00",
     currentPrice: "R$ 3.295,00",
-    image: AirPods2,
+    image: AirPodsPro,
     category: "Fones de Ouvido",
     link: "../pages/store/AirPods2.html"
   },
