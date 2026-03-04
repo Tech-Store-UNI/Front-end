@@ -1,6 +1,6 @@
 
 export const Contato = () => {
   return (
-    <div>Contato em andamento...</div>
+    <div>Contato em andamento... VOu fazer </div>
   )
 }
