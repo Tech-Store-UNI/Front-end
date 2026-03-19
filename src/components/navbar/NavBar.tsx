@@ -6,21 +6,28 @@ import {
   IconButton,
   Stack,
   InputAdornment,
-  TextField
+  TextField,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText
 } from "@mui/material";
 
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+
 import logo from "../../img/logoescura.png";
 import carrinho from "../../img/carrinho.png";
 import user from "../../img/user.png";
 import { headerText } from "./util/util";
-import SearchIcon from "@mui/icons-material/Search";
 import { Login } from "../login/login";
 
 export const NavBar = () => {
-
   const [openLogin, setOpenLogin] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <>
@@ -29,7 +36,7 @@ export const NavBar = () => {
         elevation={0}
         sx={{
           backgroundColor: "#100d28",
-          py: 2
+          py: { xs: 1, md: 2 }
         }}
       >
         <Toolbar
@@ -37,30 +44,32 @@ export const NavBar = () => {
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
-            flexWrap: "wrap"
+            px: { xs: 1, md: 3 }
           }}
         >
-          <Box sx={{ width: { xs: "50%", md: "20%" }, pl: 2 }}>
-            <Box component={RouterLink} to="/" sx={{ display: "inline-block" }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <IconButton
+              onClick={() => setOpenMenu(true)}
+              sx={{
+                display: { xs: "flex", md: "none" },
+                color: "#fff"
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <Box component={RouterLink} to="/">
               <Box
                 component="img"
                 src={logo}
-                sx={{ width: { xs: 80, md: 100 } }}
+                sx={{
+                  width: { xs: 70, md: 100 }
+                }}
               />
             </Box>
           </Box>
 
-          <Box
-            sx={{
-              width: { xs: "50%", md: "80%" },
-              justifyContent: "flex-end",
-              display: "flex",
-              alignItems: "center",
-              gap: 2,
-              flexWrap: "wrap"
-            }}
-          >
-
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Stack
               direction="row"
               sx={{
@@ -70,7 +79,7 @@ export const NavBar = () => {
                 boxShadow: "0 0 15px rgba(255,255,255,0.15)",
                 transition: "0.4s ease",
                 "&:hover": {
-                  boxShadow: "0 0 15px #c484f1"
+                  boxShadow: "0 0 20px #c484f1"
                 },
                 display: { xs: "none", md: "flex" }
               }}
@@ -82,13 +91,12 @@ export const NavBar = () => {
                   to={item.path}
                   sx={{
                     color: "#ffffffd2",
-                    fontSize: 16,
                     textTransform: "none",
+                    fontWeight: 500,
                     "&:hover": {
                       color: "#c484f1",
                       backgroundColor: "transparent"
-                    },
-                    fontWeight: 500
+                    }
                   }}
                 >
                   {item.label}
@@ -104,12 +112,12 @@ export const NavBar = () => {
                 backgroundColor: "rgba(255, 255, 255, 0.18)",
                 borderRadius: "30px",
                 px: 2,
-                py: 1.2,
-                width: 280,
+                py: 1,
+                width: 260,
                 boxShadow: "0 0 15px rgba(255,255,255,0.15)",
                 transition: "0.4s ease",
                 "&:hover": {
-                  boxShadow: "0 0 15px #c484f1"
+                  boxShadow: "0 0 20px #c484f1"
                 }
               }}
             >
@@ -119,37 +127,26 @@ export const NavBar = () => {
                 placeholder="Pesquisar"
                 InputProps={{
                   disableUnderline: true,
-                  sx: {
-                    color: "#fff",
-                    fontSize: 14
-                  },
                   endAdornment: (
                     <InputAdornment position="end">
-                      <SearchIcon
-                        sx={{
-                          color: "#fff",
-                          fontSize: 25,
-                          cursor: "pointer"
-                        }}
-                      />
+                      <SearchIcon sx={{ color: "#fff" }} />
                     </InputAdornment>
-                  ),
+                  )
                 }}
                 sx={{
+                  input: { color: "#fff" },
                   "& input::placeholder": {
-                    color: "rgba(255,255,255,0.7)",
-                    opacity: 1
+                    color: "rgba(255,255,255,0.7)"
                   }
                 }}
               />
             </Box>
 
-            <Stack direction="row" spacing={2} sx={{ pr: 2 }}>
-
+            <Stack direction="row" spacing={1}>
               <IconButton
                 sx={{
-                  width: 50,
-                  height: 50,
+                  width: { xs: 40, md: 50 },
+                  height: { xs: 40, md: 50 },
                   backdropFilter: "blur(50px)",
                   backgroundColor: "rgba(255,255,255,0.10)",
                   borderRadius: "50%",
@@ -161,18 +158,14 @@ export const NavBar = () => {
                   }
                 }}
               >
-                <Box
-                  component="img"
-                  src={carrinho}
-                  sx={{ width: 36, height: 36 }}
-                />
+                <Box component="img" src={carrinho} sx={{ width: { xs: 24, md: 32 } }} />
               </IconButton>
 
               <IconButton
                 onClick={() => setOpenLogin(true)}
                 sx={{
-                  width: 50,
-                  height: 50,
+                  width: { xs: 40, md: 50 },
+                  height: { xs: 40, md: 50 },
                   backdropFilter: "blur(50px)",
                   backgroundColor: "rgba(255,255,255,0.10)",
                   borderRadius: "50%",
@@ -184,18 +177,46 @@ export const NavBar = () => {
                   }
                 }}
               >
-                <Box
-                  component="img"
-                  src={user}
-                  sx={{ width: 36, height: 36 }}
-                />
+                <Box component="img" src={user} sx={{ width: { xs: 24, md: 32 } }} />
               </IconButton>
-
             </Stack>
-
           </Box>
         </Toolbar>
       </AppBar>
+
+      <Drawer
+        anchor="left"
+        open={openMenu}
+        onClose={() => setOpenMenu(false)}
+        PaperProps={{
+          sx: {
+            width: 260,
+            backgroundColor: "#0e0b24",
+            color: "#fff"
+          }
+        }}
+      >
+        <List sx={{ mt: 5 }}>
+          {headerText.links.map((item) => (
+            <ListItem key={item.path} disablePadding>
+              <ListItemButton
+                component={RouterLink}
+                to={item.path}
+                onClick={() => setOpenMenu(false)}
+              >
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    fontSize: 20,
+                    textAlign: "center"
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+
+        </List>
+      </Drawer>
 
       <Login open={openLogin} handleClose={() => setOpenLogin(false)} />
     </>
